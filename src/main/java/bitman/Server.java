@@ -13,6 +13,7 @@ public class Server {
     public static void main(String[] args) throws IOException {
 
 		if (args.length != 1) {
+            // ToDo add logging
 			System.err.println("Usage: java Server <port number>");
 			System.exit(-1);
 		}
@@ -36,10 +37,12 @@ public class Server {
             while (true)
             {
                 Socket clientSocket = getConnection(serverSocket);
+                // ToDo add thread name
                 new Thread(new ClientRequest(clientSocket)).start();
             }
         } catch (IOException e)
         {
+            // ToDo add logging
             e.printStackTrace(System.err);
         }
     }
@@ -53,6 +56,7 @@ public class Server {
                 return serverSocket.accept();
             } catch (IOException e)
             {
+                // ToDo add logging
                 e.printStackTrace(System.err);
             }
         }
@@ -80,12 +84,14 @@ public class Server {
                 String inputLine;
                 while ((inputLine = in.readLine()) != null)
                 {
+                    // ToDo allow runtime factory invocation (factory property ?)
                     Command cmd = CommandFactory.createCommand(inputLine);
                     cmd.execute(out);
                 }
 
             } catch (IOException e)
             {
+                // ToDo add logging
                 e.printStackTrace(System.err);
             }
 
