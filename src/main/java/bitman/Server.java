@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
+import java.lang.reflect.InvocationTargetException;
 import java.net.ServerSocket;
 import java.net.Socket;
 
@@ -84,12 +85,17 @@ public class Server {
                 String inputLine;
                 while ((inputLine = in.readLine()) != null)
                 {
-                    // ToDo allow runtime factory invocation (factory property ?)
-                    Command cmd = CommandFactory.createCommand(inputLine);
+                    final String property = System.getProperty("server.method", "bitman.CommandFactory#createCommand");
+                    // ToDo might fail, please validate
+                    String clazz = property.split("#")[0];
+                    String method = property.split("#")[1];
+                    Command cmd = (Command) ClassLoader.getSystemClassLoader().loadClass(clazz).getDeclaredMethod(method,String
+                            .class).invoke(null, inputLine);
                     cmd.execute(out);
                 }
 
-            } catch (IOException e)
+            } catch (IOException | ClassNotFoundException | NoSuchMethodException | SecurityException | IllegalAccessException |
+                    IllegalArgumentException | InvocationTargetException e)
             {
                 // ToDo add logging
                 e.printStackTrace(System.err);
