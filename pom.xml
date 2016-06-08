@@ -22,6 +22,7 @@
 	<name>socket-server</name>
 	<url>http://maven.apache.org</url>
 
+	<!-- ToDo Move to new project, add to Maven Repository -->
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
