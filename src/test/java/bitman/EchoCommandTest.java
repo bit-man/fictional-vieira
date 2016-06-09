@@ -1,17 +1,17 @@
 package bitman;
 
-import static org.junit.Assert.assertEquals;
-
 import org.junit.Test;
+
+import static org.junit.Assert.assertEquals;
 
 public class EchoCommandTest
 
 {
 	@Test
 	public void testEcho() {
-		final EchoCommand command = new EchoCommand("abc");
+		final EchoCommand command = new EchoCommand("echo abc");
 		TestWriter out = new TestWriter();
 		command.execute(out);
-		assertEquals("abc\n", out.getOut());
+		assertEquals("#!/bin/bash\n" + "echo \"abc\"\n", out.getOut());
 	}
 }
