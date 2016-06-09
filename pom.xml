@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>bitman</groupId>
-	<artifactId>socket-server</artifactId>
+	<artifactId>fictional-vieira</artifactId>
 	<version>1.0-SNAPSHOT</version>
 	<build>
 		<plugins>
@@ -19,10 +19,9 @@
 	</build>
 	<packaging>jar</packaging>
 
-	<name>socket-server</name>
+	<name>fictional-vieira</name>
 	<url>http://maven.apache.org</url>
 
-	<!-- ToDo Move to new project, add to Maven Repository -->
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
