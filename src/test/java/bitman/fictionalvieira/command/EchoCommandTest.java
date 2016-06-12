@@ -1,4 +1,4 @@
-package bitman;
+package bitman.fictionalvieira.command;
 
 import org.junit.Test;
 

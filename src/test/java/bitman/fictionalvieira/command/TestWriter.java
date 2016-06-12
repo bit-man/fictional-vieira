@@ -1,4 +1,4 @@
-package bitman;
+package bitman.fictionalvieira.command;
 
 import java.io.IOException;
 import java.io.Writer;

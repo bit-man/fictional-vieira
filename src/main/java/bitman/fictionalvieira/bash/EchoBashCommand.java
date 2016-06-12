@@ -1,4 +1,4 @@
-package bitman;
+package bitman.fictionalvieira.bash;
 
 /**
  * BASH command echo : prints passed args

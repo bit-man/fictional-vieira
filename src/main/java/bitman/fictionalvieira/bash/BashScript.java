@@ -1,4 +1,4 @@
-package bitman;
+package bitman.fictionalvieira.bash;
 
 import java.util.LinkedList;
 import java.util.List;

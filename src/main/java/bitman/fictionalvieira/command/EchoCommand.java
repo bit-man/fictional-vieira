@@ -1,4 +1,7 @@
-package bitman;
+package bitman.fictionalvieira.command;
+
+import bitman.fictionalvieira.bash.BashScript;
+import bitman.fictionalvieira.bash.EchoBashCommand;
 
 import java.io.IOException;
 import java.io.Writer;
