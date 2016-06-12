@@ -9,7 +9,7 @@ public class CommandFactory {
 	private static Map<String,Function<String,Command>>  command = new HashMap<>();
 
 	static {
-		command.put("echo",  cmdLine -> new EchoCommand(cmdLine));
+		command.put("display",  cmdLine -> new EchoCommand(cmdLine));
 	}
 
 	public static Command createCommand(String s) {
