@@ -1,8 +1,8 @@
 package bitman.fictionalvieira.command;
 
-import org.junit.Test;
-
 import static org.junit.Assert.assertEquals;
+
+import org.junit.Test;
 
 public class EchoCommandTest
 
@@ -12,6 +12,6 @@ public class EchoCommandTest
 		final EchoCommand command = new EchoCommand("echo abc");
 		TestWriter out = new TestWriter();
 		command.execute(out);
-		assertEquals("#!/bin/bash\n" + "echo \"abc\"", out.getOut());
+		assertEquals("#!/bin/bash\n" + "echo \"abc\"\n", out.getOut());
 	}
 }

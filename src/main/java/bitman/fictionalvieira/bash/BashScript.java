@@ -5,6 +5,7 @@ import java.util.List;
 
 public class BashScript
 {
+    private static final String NEW_LINE = "\n";
     private List<BashCommand> commands = new LinkedList<>();
 
     public BashScript() {
@@ -23,7 +24,7 @@ public class BashScript
 
         for(BashCommand bCmd : commands) {
             // ToDo agregar formateo de código (mejor legibilidad)
-            code += bCmd.getCode();
+            code += bCmd.getCode() + NEW_LINE;
         }
 
         return code;
@@ -35,7 +36,7 @@ public class BashScript
         @Override
         public String getCode()
         {
-            return "#!/bin/bash\n";
+            return "#!/bin/bash";
         }
     }
 }
