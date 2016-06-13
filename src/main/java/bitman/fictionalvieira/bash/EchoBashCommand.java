@@ -16,6 +16,6 @@ public class EchoBashCommand
     @Override
     public String getCode()
     {
-        return "echo \"" + args + "\"\n";
+        return "echo \"" + args + "\"";
     }
 }
