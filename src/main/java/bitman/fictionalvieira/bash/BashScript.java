@@ -22,6 +22,7 @@ public class BashScript
         String code = "";
 
         for(BashCommand bCmd : commands) {
+            // ToDo agregar formateo de código (mejor legibilidad)
             code += bCmd.getCode();
         }
 

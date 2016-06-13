@@ -1,15 +1,15 @@
 package bitman.fictionalvieira.bash;
 
-public class AndBashOperator
+public class PipeBashOperator
 		extends ChainOperator
-		implements BashCommand {
+		implements BashCommand	{
 
-	public AndBashOperator(BashCommand... cmd) {
+	public PipeBashOperator(BashCommand... cmd) {
 		super(cmd);
 	}
 
 	@Override
 	protected String getOperator() {
-		return "&&";
+		return "|";
 	}
 }
