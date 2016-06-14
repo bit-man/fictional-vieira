@@ -12,7 +12,7 @@ public class RedirectOperator implements BashCommand {
 	}
 	@Override
 	public String getCode() {
-		return cmd + " " + type.getSymbol() + " " + file;
+		return cmd.getCode() + " " + type.getSymbol() + " " + file;
 	}
 
 	public enum Type {

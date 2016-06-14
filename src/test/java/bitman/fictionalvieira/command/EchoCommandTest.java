@@ -12,6 +12,6 @@ public class EchoCommandTest
 		final EchoCommand command = new EchoCommand("echo abc");
 		TestWriter out = new TestWriter();
 		command.execute(out);
-		assertEquals("#!/bin/bash\n" + "echo \"abc\"\n", out.getOut());
+		assertEquals("#!/bin/bash\n\n" + "echo \"abc\"\n", out.getOut());
 	}
 }

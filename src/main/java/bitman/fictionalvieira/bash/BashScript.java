@@ -36,7 +36,7 @@ public class BashScript
         @Override
         public String getCode()
         {
-            return "#!/bin/bash";
+            return "#!/bin/bash\n";
         }
     }
 }
