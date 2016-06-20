@@ -1,5 +1,7 @@
 package guru.bitman.fictionalvieira.command;
 
+import guru.bitman.fictionalvieira.server.Command;
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Function;

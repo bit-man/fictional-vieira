@@ -2,11 +2,13 @@ package guru.bitman.fictionalvieira.command;
 
 import guru.bitman.fictionalvieira.bash.BashScript;
 import guru.bitman.fictionalvieira.bash.EchoBashCommand;
+import guru.bitman.fictionalvieira.server.Command;
 
 import java.io.IOException;
 import java.io.Writer;
 
-public class EchoCommand implements Command {
+public class EchoCommand implements Command
+{
 	private final String cmdLine;
 
 	public EchoCommand(String cmdLine) {

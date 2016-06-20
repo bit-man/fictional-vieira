@@ -1,7 +1,5 @@
 package guru.bitman.fictionalvieira.server;
 
-import guru.bitman.fictionalvieira.command.Command;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -87,7 +85,7 @@ public class Server {
                 String inputLine;
                 while ((inputLine = in.readLine()) != null)
                 {
-                    final String property = System.getProperty("server.method", "CommandFactory#createCommand");
+                    final String property = System.getProperty("server.method", "guru.bitman.fictionalvieira.command.CommandFactory#createCommand");
                     // ToDo might fail, please validate
                     String clazz = property.split("#")[0];
                     String method = property.split("#")[1];
