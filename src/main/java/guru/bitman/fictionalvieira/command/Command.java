@@ -1,4 +1,4 @@
-package bitman.fictionalvieira.command;
+package guru.bitman.fictionalvieira.command;
 
 import java.io.Writer;
 

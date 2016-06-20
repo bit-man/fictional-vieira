@@ -1,4 +1,4 @@
-package bitman.fictionalvieira.bash;
+package guru.bitman.fictionalvieira.bash;
 
 import org.junit.Assert;
 import org.junit.Test;

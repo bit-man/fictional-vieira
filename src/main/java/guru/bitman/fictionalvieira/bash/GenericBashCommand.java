@@ -1,4 +1,4 @@
-package bitman.fictionalvieira.bash;
+package guru.bitman.fictionalvieira.bash;
 
 public class GenericBashCommand
 	implements BashCommand {

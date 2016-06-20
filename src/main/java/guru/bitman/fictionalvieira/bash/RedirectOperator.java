@@ -1,4 +1,4 @@
-package bitman.fictionalvieira.bash;
+package guru.bitman.fictionalvieira.bash;
 
 public class RedirectOperator implements BashCommand {
 	private final String file;

@@ -1,4 +1,4 @@
-package bitman.fictionalvieira.bash;
+package guru.bitman.fictionalvieira.bash;
 
 import java.util.ArrayList;
 import java.util.Collections;

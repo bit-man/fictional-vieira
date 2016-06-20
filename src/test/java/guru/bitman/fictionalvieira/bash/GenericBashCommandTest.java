@@ -1,4 +1,4 @@
-package bitman.fictionalvieira.bash;
+package guru.bitman.fictionalvieira.bash;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
