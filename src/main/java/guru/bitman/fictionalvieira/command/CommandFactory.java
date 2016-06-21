@@ -12,6 +12,7 @@ public class CommandFactory {
 
 	static {
 		command.put("display",  cmdLine -> new EchoCommand(cmdLine));
+		command.put("ping",  cmdLine -> new Ping());
 	}
 
 	public static Command createCommand(String s) {
