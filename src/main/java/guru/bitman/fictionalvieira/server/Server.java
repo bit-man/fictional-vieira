@@ -5,13 +5,17 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.net.ServerSocket;
 import java.net.Socket;
 
 public class Server {
     private final int port;
+    private Method commandCreation;
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args)
+            throws IOException,ReflectiveOperationException
+    {
 
 		if (args.length != 1) {
             // ToDo add logging
@@ -30,11 +34,15 @@ public class Server {
     }
 
     private void mainLoop()
+            throws ReflectiveOperationException
     {
         try (
                 ServerSocket serverSocket = new ServerSocket(port)
         )
         {
+            initCommandExecution();
+            commandCreation = commandFactoryCommandCreation();
+
             while (true)
             {
                 Socket clientSocket = getConnection(serverSocket);
@@ -63,6 +71,31 @@ public class Server {
         }
     }
 
+    private void initCommandExecution()
+            throws ReflectiveOperationException
+    {
+        staticMethodCreation("init.method", "guru.bitman.fictionalvieira.command.CommandFactory#reset").invoke(null);
+    }
+
+
+    private Method commandFactoryCommandCreation()
+            throws ReflectiveOperationException
+    {
+        return staticMethodCreation("server.method", "guru.bitman.fictionalvieira.command.CommandFactory#createCommand");
+    }
+
+    private Method staticMethodCreation(String propertyname, String defaultValue)
+            throws IllegalAccessException, InvocationTargetException, NoSuchMethodException, ClassNotFoundException
+    {
+        final String property = System.getProperty(propertyname, defaultValue);
+        // ToDo might fail, please validate
+        String[] split = property.split("#");
+        String clazz = split[0];
+        String method = split[1];
+        return ClassLoader.getSystemClassLoader().loadClass(clazz).getDeclaredMethod(method,String
+                .class);
+    }
+
     private class ClientRequest
             implements Runnable
     {
@@ -72,7 +105,6 @@ public class Server {
         {
             this.clientSocket = clientSocket;
         }
-
 
         @Override
         public void run()
@@ -85,16 +117,10 @@ public class Server {
                 String inputLine;
                 while ((inputLine = in.readLine()) != null)
                 {
-                    final String property = System.getProperty("server.method", "guru.bitman.fictionalvieira.command.CommandFactory#createCommand");
-                    // ToDo might fail, please validate
-                    String clazz = property.split("#")[0];
-                    String method = property.split("#")[1];
-                    Command cmd = (Command) ClassLoader.getSystemClassLoader().loadClass(clazz).getDeclaredMethod(method,String
-                            .class).invoke(null, inputLine);
-                    cmd.execute(out);
+                    ((Command)commandCreation.invoke(null, inputLine)).execute(out);
                 }
 
-            } catch (IOException | ClassNotFoundException | NoSuchMethodException | SecurityException | IllegalAccessException |
+            } catch (IOException | SecurityException | IllegalAccessException |
                     IllegalArgumentException | InvocationTargetException e)
             {
                 // ToDo add logging
