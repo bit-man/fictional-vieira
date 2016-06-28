@@ -11,13 +11,34 @@ public class CommandFactory {
 	private static Map<String,Function<String,Command>>  command = new HashMap<>();
 
 	static {
-		command.put("display",  cmdLine -> new EchoCommand(cmdLine));
-		command.put("ping",  cmdLine -> new Ping());
+        reset();
 	}
 
-	public static Command createCommand(String s) {
-		// ToDo on empty or null string, or unregistered command, we have issue. Please validate.
+    public static void reset()
+    {
+        command.put("echo",  cmdLine -> new EchoCommand(cmdLine));
+        command.put("ping",  cmdLine -> new Ping());
+    }
+
+    public static Command createCommand(String s)
+            throws InvalidCommand
+    {
+        if ( s == null ) {
+            throw new InvalidCommand("NULL");
+        }
+
 		String cmd = s.split(" ")[0];
-		return command.get(cmd).apply(s);
+
+        Function<String, Command> function = command.get(cmd);
+        if ( function == null) {
+            throw new InvalidCommand(cmd);
+        }
+
+        String[] strings = s.split(" ", 2);
+        return function.apply(strings.length == 1 ? "" : strings[1]);
+	}
+
+	public static void addCommand(String commandName, Function<String,Command> commandCreation) {
+		command.put(commandName, commandCreation);
 	}
 }

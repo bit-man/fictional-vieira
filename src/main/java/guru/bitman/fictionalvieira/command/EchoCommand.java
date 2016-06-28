@@ -20,7 +20,7 @@ public class EchoCommand implements Command
 		BashScript bashScript = new BashScript();
 		// ToDo validate cmdLine split
 		String script = bashScript
-				.addCommand(new EchoBashCommand(cmdLine.split(" ",2)[1]))
+				.addCommand(new EchoBashCommand(cmdLine))
 				.buildScript();
 		try {
 			out.write(script);
