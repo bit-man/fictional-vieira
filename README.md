@@ -45,8 +45,23 @@ Based on this brief analysis lets Java create Bash scripts that contain
 only code using the strengths described previously, no arrays and use 
 control structures when needed for runtime decisions only
 
+## Obtaining snapshots
+
+If interested in the SNAPSHOT versions add it to your project POM repository
+
+
+    <repositories>
+        <repository>
+            <id>fictional-vieira</id>
+            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+            <snapshots>
+                <enabled>true</enabled>
+                <updatePolicy>always</updatePolicy>
+            </snapshots>
+        </repository>
+    </repositories>
+
 ## ToDo
 
-* Add to Maven repository 
 * Create DEBUG option
 * Add logging
