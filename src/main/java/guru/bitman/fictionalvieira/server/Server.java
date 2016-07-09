@@ -81,10 +81,10 @@ public class Server {
     private Method commandFactoryCommandCreation()
             throws ReflectiveOperationException
     {
-        return staticMethodCreation("server.method", "guru.bitman.fictionalvieira.command.CommandFactory#createCommand");
+        return staticMethodCreation("server.method", "guru.bitman.fictionalvieira.command.CommandFactory#createCommand", String.class);
     }
 
-    private Method staticMethodCreation(String propertyname, String defaultValue)
+    private Method staticMethodCreation(String propertyname, String defaultValue, Class<?>... parameterTypes)
             throws IllegalAccessException, InvocationTargetException, NoSuchMethodException, ClassNotFoundException
     {
         final String property = System.getProperty(propertyname, defaultValue);
@@ -92,8 +92,7 @@ public class Server {
         String[] split = property.split("#");
         String clazz = split[0];
         String method = split[1];
-        return ClassLoader.getSystemClassLoader().loadClass(clazz).getDeclaredMethod(method,String
-                .class);
+        return ClassLoader.getSystemClassLoader().loadClass(clazz).getDeclaredMethod(method,parameterTypes);
     }
 
     private class ClientRequest
