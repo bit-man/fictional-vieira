@@ -3,11 +3,11 @@ package guru.bitman.fictionalvieira.command;
 import java.io.IOException;
 import java.io.Writer;
 
-public class TestWriter extends Writer {
-	private String str;
+class TestWriter extends Writer {
+	private String str = "";
 
 	public void write(String str) throws IOException {
-		this.str = str;
+		this.str += str;
 	}
 
 	@Override
@@ -24,7 +24,7 @@ public class TestWriter extends Writer {
 
 	}
 
-	public String getOut() {
+	String getOut() {
 		return str;
 	}
 }
