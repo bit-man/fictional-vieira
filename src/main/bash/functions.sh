@@ -7,9 +7,11 @@ server=serverAddress
 function pingAndStart() {
     echo "ping" | nc $server $port > /tmp/ping
 
-    while [[ `cat /tmp/ping` != pong ]]; do
+    [[ `cat /tmp/ping` != pong ]] && \
         $scriptPath
-        sleep 1
+
+    while [[ `cat /tmp/ping` != pong ]]; do
+        sleep 0.1
         echo "ping" | nc $server $port > /tmp/ping
     done
 }
