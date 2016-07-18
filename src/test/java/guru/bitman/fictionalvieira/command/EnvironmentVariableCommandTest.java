@@ -26,22 +26,16 @@ public class EnvironmentVariableCommandTest
 
     @Test
     public void testRightNameAndValuesCreated() {
-        TestWriter out = new TestWriter();
-        new EnvironmentVariableCommand("name", "value").execute(out);
-        assertEquals( "name=value", out.getOut() );
+        assertEquals( "name=value", new EnvironmentVariableCommand("name", "value").getCode() );
     }
 
     @Test
     public void testOnlyName() {
-        TestWriter out = new TestWriter();
-        new EnvironmentVariableCommand("name").execute(out);
-        assertEquals( "name=", out.getOut() );
+        assertEquals( "name=", new EnvironmentVariableCommand("name").getCode() );
     }
 
     @Test
     public void testRightNameAndValuesCreatedOnExport() {
-        TestWriter out = new TestWriter();
-        new EnvironmentVariableCommand("name", "value", true).execute(out);
-        assertEquals( "export name=value", out.getOut() );
+        assertEquals( "export name=value", new EnvironmentVariableCommand("name", "value", true).getCode() );
     }
 }

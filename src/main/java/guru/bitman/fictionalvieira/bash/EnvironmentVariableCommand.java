@@ -1,15 +1,11 @@
 package guru.bitman.fictionalvieira.bash;
 
-import guru.bitman.fictionalvieira.server.Command;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.IOException;
-import java.io.Writer;
-
 
 public class EnvironmentVariableCommand
-    implements Command
+    implements BashCommand
 {
     private final String name;
     private final String value;
@@ -42,23 +38,21 @@ public class EnvironmentVariableCommand
     }
 
     @Override
-    public void execute(Writer out)
+    public String getCode()
     {
-        try
+        StringBuilder out = new StringBuilder();
+        if (export)
         {
-            if ( export ) {
-                out.append("export ");
-            }
-
-            out.append(name).append("=");
-
-            if ( value != null ) {
-                out.append(value);
-            }
-            out.flush();
-        } catch (IOException e)
-        {
-            logger.error("Error writing code", e);
+            out.append("export ");
         }
+
+        out.append(name).append("=");
+
+        if (value != null)
+        {
+            out.append(value);
+        }
+
+        return out.toString();
     }
 }
