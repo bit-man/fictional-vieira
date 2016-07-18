@@ -1,5 +1,8 @@
 package guru.bitman.fictionalvieira.server;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -13,12 +16,13 @@ public class Server {
     private final int port;
     private Method commandCreation;
 
+    private Logger logger = LoggerFactory.getLogger(Server.class.getName());
+
     public static void main(String[] args)
             throws IOException,ReflectiveOperationException
     {
 
 		if (args.length != 1) {
-            // ToDo add logging
 			System.err.println("Usage: java Server <port number>");
 			System.exit(-1);
 		}
@@ -37,7 +41,7 @@ public class Server {
             throws ReflectiveOperationException
     {
         try (
-                ServerSocket serverSocket = new ServerSocket(port)
+               ServerSocket serverSocket = new ServerSocket(port)
         )
         {
             initCommandExecution();
@@ -51,8 +55,7 @@ public class Server {
             }
         } catch (IOException e)
         {
-            // ToDo add logging
-            e.printStackTrace(System.err);
+            logger.error("Error opening port " + port, e);
         }
     }
 
@@ -65,8 +68,7 @@ public class Server {
                 return serverSocket.accept();
             } catch (IOException e)
             {
-                // ToDo add logging
-                e.printStackTrace(System.err);
+                logger.error("Error waiting for connection", e);
             }
         }
     }
@@ -84,10 +86,10 @@ public class Server {
         return staticMethodCreation("server.method", "guru.bitman.fictionalvieira.command.CommandFactory#createCommand", String.class);
     }
 
-    private Method staticMethodCreation(String propertyname, String defaultValue, Class<?>... parameterTypes)
+    private Method staticMethodCreation(String propertyName, String defaultValue, Class<?>... parameterTypes)
             throws IllegalAccessException, InvocationTargetException, NoSuchMethodException, ClassNotFoundException
     {
-        final String property = System.getProperty(propertyname, defaultValue);
+        final String property = System.getProperty(propertyName, defaultValue);
         // ToDo might fail, please validate
         String[] split = property.split("#");
         String clazz = split[0];
@@ -122,8 +124,7 @@ public class Server {
             } catch (IOException | SecurityException | IllegalAccessException |
                     IllegalArgumentException | InvocationTargetException e)
             {
-                // ToDo add logging
-                e.printStackTrace(System.err);
+                logger.error("Error processing client request", e);
             }
 
         }
