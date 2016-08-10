@@ -22,7 +22,6 @@ public class EchoCommand implements Command
 	@Override
 	public void execute(Writer out) {
 		BashScript bashScript = new BashScript();
-		// ToDo validate cmdLine split
 		String script = bashScript
 				.addCommand(new EchoBashCommand(cmdLine))
 				.buildScript();
