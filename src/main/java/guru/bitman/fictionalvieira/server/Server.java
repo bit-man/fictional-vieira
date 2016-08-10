@@ -17,6 +17,7 @@ public class Server {
     private Method commandCreation;
 
     private Logger logger = LoggerFactory.getLogger(Server.class.getName());
+    private static int threadNum = 0;
 
     public static void main(String[] args)
             throws IOException,ReflectiveOperationException
@@ -50,13 +51,17 @@ public class Server {
             while (true)
             {
                 Socket clientSocket = getConnection(serverSocket);
-                // ToDo add thread name
-                new Thread(new ClientRequest(clientSocket)).start();
+                new Thread(new ClientRequest(clientSocket), "fv-" + getNextThreadNum() ).start();
             }
         } catch (IOException e)
         {
             logger.error("Error opening port " + port, e);
         }
+    }
+
+    private  static synchronized int getNextThreadNum()
+    {
+        return threadNum++;
     }
 
     private Socket getConnection(ServerSocket serverSocket)
