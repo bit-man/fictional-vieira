@@ -64,4 +64,4 @@ If interested in the SNAPSHOT versions add it to your project POM repository
 ## ToDo
 
 * Create DEBUG option
-* Add logging
+
