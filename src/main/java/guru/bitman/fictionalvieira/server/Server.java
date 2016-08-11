@@ -94,11 +94,9 @@ public class Server {
     private Method staticMethodCreation(String propertyName, String defaultValue, Class<?>... parameterTypes)
             throws IllegalAccessException, InvocationTargetException, NoSuchMethodException, ClassNotFoundException
     {
-        final String property = System.getProperty(propertyName, defaultValue);
-        // ToDo might fail, please validate
-        String[] split = property.split("#");
-        String clazz = split[0];
-        String method = split[1];
+        PropertyParser parser = new PropertyParser(propertyName, defaultValue).parse();
+        String clazz = parser.getClazz();
+        String method = parser.getMethod();
         return ClassLoader.getSystemClassLoader().loadClass(clazz).getDeclaredMethod(method,parameterTypes);
     }
 
@@ -134,4 +132,5 @@ public class Server {
 
         }
     }
+
 }
