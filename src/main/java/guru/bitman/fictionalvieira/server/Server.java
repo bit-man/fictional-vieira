@@ -81,14 +81,14 @@ public class Server {
     private void initCommandExecution()
             throws ReflectiveOperationException
     {
-        staticMethodCreation("init.method", "guru.bitman.fictionalvieira.command.CommandFactory#reset").invoke(null);
+        staticMethodCreation("fv.init.method", "guru.bitman.fictionalvieira.command.CommandFactory#reset").invoke(null);
     }
 
 
     private Method commandFactoryCommandCreation()
             throws ReflectiveOperationException
     {
-        return staticMethodCreation("server.method", "guru.bitman.fictionalvieira.command.CommandFactory#createCommand", String.class);
+        return staticMethodCreation("fv.server.method", "guru.bitman.fictionalvieira.command.CommandFactory#createCommand", String.class);
     }
 
     private Method staticMethodCreation(String propertyName, String defaultValue, Class<?>... parameterTypes)
