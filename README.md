@@ -1,5 +1,6 @@
 # fictional-vieira
 
+Project moved to https://gitlab.com/bit-man/fictional-vieira
 
 ## Scripting analysis
 
